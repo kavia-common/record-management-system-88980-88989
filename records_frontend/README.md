@@ -1,82 +1,50 @@
-# Lightweight React Template for KAVIA
+# Records Frontend (React + Bootstrap 5)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A modern, responsive web app to manage records with Title, Description, and Image.
+Implements CRUD with form validation, Bootstrap 5 UI, and a clean "Ocean Professional" theme.
 
 ## Features
+- List, create, edit, and delete records
+- Image upload with preview (on edit shows current image)
+- Responsive UI: desktop table and mobile card view (<576px)
+- Bootstrap 5 components, subtle gradients, rounded corners, and soft shadows
+- Search filter
+- Modals for editing and deleting
+- Robust error handling and loading states
+- API service layer wired to `records_database` backend
+- AI summary stub function ready for future integration
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+## Environment
+Set the API base URL for the backend:
 
-## Getting Started
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-### `npm test`
-
-Launches the test runner in interactive watch mode.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
+Create `.env` in project root (do not commit secrets):
+```
+REACT_APP_RECORDS_API_BASE=https://your-records-database-host
 ```
 
-### Components
+See `.env.example` for a template.
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+## Scripts
+- `npm start` – run in development
+- `npm test` – run tests
+- `npm run build` – production build
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+## Backend contract (expected)
+- `GET    /records` → returns array of records: `{ id, title, description, imageUrl, createdAt }`
+- `POST   /records` (multipart/form-data with fields: `title`, `description`, `image`) → returns created record
+- `PUT    /records/:id` (multipart/form-data with optional `image`) → returns updated record
+- `DELETE /records/:id` → returns success status
 
-## Learn More
+If your backend differs, adjust `src/services/api.js`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
+- `src/services/api.js` – API client and AI summary stub
+- `src/components/RecordList.js` – table and mobile card list
+- `src/components/RecordModals.js` – edit/create and delete modals
+- `src/theme.css` – Ocean Professional theme tokens and UI polish
+- `src/App.js` – application shell, navbar, search, and state management
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Notes
+- Image upload uses `multipart/form-data` via `FormData`.
+- Validation: Title and Description required; Image required for create (can be adjusted).
+- Replace `getAiSummaryStub` with real AI integration when ready.

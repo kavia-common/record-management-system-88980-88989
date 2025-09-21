@@ -1,0 +1,116 @@
+:root {
+  --primary: #2563EB;
+  --secondary: #F59E0B;
+  --success: #10B981;
+  --error: #EF4444;
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6B7280;
+  --ring: rgba(37, 99, 235, 0.25);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Subtle gradient background for top sections */
+.ocean-gradient {
+  background: linear-gradient(180deg, rgba(37,99,235,0.06) 0%, rgba(249,250,251,0.9) 100%);
+}
+
+/* Cards */
+.card.ocean {
+  border: 1px solid rgba(17,24,39,0.06);
+  box-shadow: 0 10px 30px rgba(17,24,39,0.06);
+  border-radius: 14px;
+}
+
+/* Buttons */
+.btn-primary.ocean {
+  background: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 6px 16px rgba(37,99,235,0.25);
+}
+.btn-primary.ocean:hover {
+  filter: brightness(0.95);
+}
+
+/* Inputs focus ring */
+.form-control:focus, .form-select:focus, .form-check-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 .2rem var(--ring);
+}
+
+/* Navbar */
+.navbar.ocean {
+  background: var(--surface);
+  border-bottom: 1px solid rgba(17,24,39,0.06);
+}
+
+/* Table tweaks */
+.table.ocean thead th {
+  background: #f3f4f6;
+  color: #111827;
+  border-bottom: 1px solid rgba(17,24,39,0.1);
+}
+.table.ocean tbody tr {
+  transition: background-color 0.15s ease, transform 0.05s ease;
+}
+.table.ocean tbody tr:hover {
+  background-color: rgba(37,99,235,0.05);
+}
+
+/* Utility */
+.rounded-12 { border-radius: 12px; }
+.shadow-soft { box-shadow: 0 10px 30px rgba(17,24,39,0.08); }
+.text-muted-700 { color: var(--muted); }
+
+/* Mobile card list spacing */
+.record-card + .record-card { margin-top: 1rem; }
+
+/* Image preview */
+.image-thumb {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(17,24,39,0.08);
+}
+
+/* Action icon buttons */
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid rgba(17,24,39,0.08);
+  background: #fff;
+}
+.btn-icon:hover {
+  background: #f3f4f6;
+}
+
+/* Badge for id or info */
+.badge-soft {
+  background: rgba(37,99,235,0.08);
+  color: var(--primary);
+  border: 1px solid rgba(37,99,235,0.15);
+}
+
+/* Helper */
+.required:after {
+  content: " *";
+  color: var(--error);
+}
+
+/* Mobile visibility for table/card */
+@media (max-width: 575.98px) {
+  .desktop-only { display: none !important; }
+}
+@media (min-width: 576px) {
+  .mobile-only { display: none !important; }
+}
